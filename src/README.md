@@ -5,7 +5,8 @@ by 翁恺
 2.
 虽然我为了避免因为编码原因全部用的全部都是英文，如果是在原来的网站上下载的代码记得在Eclipse里将文件的编码格式改为UTF-8：
 
-File --> Properties --> Resource (Text file encoding) ==> Other [UTF-8]
+方法一：File --> Properties --> Resource (Text file encoding) ==> Other [UTF-8]（不知道为什么我没成功）
+方法二：Window --> Perference --> General --> Workspace(Text file encoding) ==> Other [UTF-8]
 
 因为代码中的汉字是UTF-8编码
 
