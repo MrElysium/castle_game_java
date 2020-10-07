@@ -1,10 +1,11 @@
-public class Room {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
 
+public class Room {
+	private String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+      
     public Room(String description) 
     {
         this.description = description;
@@ -23,17 +24,39 @@ public class Room {
     }
 
     public void printOptions(){
-    	System.out.print("choose the direction:");
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("choose the direction: ");
         if(this.northExit != null)
-            System.out.print("north ");
+        	sb.append("north ");
         if(this.eastExit != null)
-            System.out.print("east ");
+        	sb.append("east ");
         if(this.southExit != null)
-            System.out.print("south ");
+        	sb.append("south ");
         if(this.westExit != null)
-            System.out.print("west ");
+        	sb.append("west ");
+        System.out.println(sb.toString());
         System.out.println();
     }
+    
+    public Room nextRoom(String direction) {
+    	Room nextRoom =null;
+    	if(direction.equals("north")) {
+            nextRoom = this.northExit;
+        }
+        if(direction.equals("east")) {
+            nextRoom = this.eastExit;
+        }
+        if(direction.equals("south")) {
+            nextRoom = this.southExit;
+        }
+        if(direction.equals("west")) {
+            nextRoom = this.westExit;
+        }
+        
+		return nextRoom;   	
+        
+    }
+    
     @Override
     public String toString()
     {
