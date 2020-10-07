@@ -1,4 +1,3 @@
-package castle;
 
 import java.util.Scanner;
 
@@ -30,6 +29,7 @@ public class Game {
 
         currentRoom = outside;  //	the game begin outside the castle
     }
+    
 
     private void printWelcome() {
         System.out.println();
@@ -54,8 +54,8 @@ public class Game {
 
     private void printHelp() 
     {
-        System.out.print("Do you lose？you can try three commands：go bye help");
-        System.out.println("such as：\tgo east");
+        System.out.println("Do you lose? you can try three commands: go bye help");
+        System.out.println("such as: go east");
     }
 
     private void goRoom(String direction) 
@@ -79,7 +79,7 @@ public class Game {
         }
         else {
             currentRoom = nextRoom;
-            System.out.println("you are" + currentRoom);
+            System.out.println("you are " + currentRoom);
             System.out.print("choose the direction: ");
             if(currentRoom.northExit != null)
                 System.out.print("north ");
