@@ -11,12 +11,21 @@ File --> Properties --> Resource (Text file encoding) ==> Other [UTF-8]
 
 3.
 请根据castle的代码回答这些问题：
+
   这个应用程序的任务是什么?
-在城堡中走
+  
+在城堡中走。
+
   这个应用程序接受什么样的命令?
+  
 String 类型 （go bye help）
+
   每个命令做什么?
+  
 go 移动 help 调出说明 bye 结束
+
   在场景中有多少间房?
+  
 五个
+
   画出现有的房间的地图。 
