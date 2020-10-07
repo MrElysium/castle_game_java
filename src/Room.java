@@ -1,5 +1,3 @@
-package castle;
-
 public class Room {
     public String description;
     public Room northExit;
@@ -24,6 +22,18 @@ public class Room {
             westExit = west;
     }
 
+    public void printOptions(){
+    	System.out.print("choose the direction:");
+        if(this.northExit != null)
+            System.out.print("north ");
+        if(this.eastExit != null)
+            System.out.print("east ");
+        if(this.southExit != null)
+            System.out.print("south ");
+        if(this.westExit != null)
+            System.out.print("west ");
+        System.out.println();
+    }
     @Override
     public String toString()
     {
