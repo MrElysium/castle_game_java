@@ -1,4 +1,3 @@
-package castle;
 
 import java.util.Scanner;
 
@@ -30,6 +29,7 @@ public class Game {
 
         currentRoom = outside;  //	the game begin outside the castle
     }
+    
 
     private void printWelcome() {
         System.out.println();
@@ -38,24 +38,15 @@ public class Game {
         System.out.println("If you need help,please input: help ");
         System.out.println();
         System.out.println(currentRoom);
-        System.out.print("choose the direction:");
-        if(currentRoom.northExit != null)
-            System.out.print("north ");
-        if(currentRoom.eastExit != null)
-            System.out.print("east ");
-        if(currentRoom.southExit != null)
-            System.out.print("south ");
-        if(currentRoom.westExit != null)
-            System.out.print("west ");
-        System.out.println();
+        currentRoom.printOptions();
     }
 
     // User command
 
     private void printHelp() 
     {
-        System.out.print("Do you lose？you can try three commands：go bye help");
-        System.out.println("such as：\tgo east");
+        System.out.println("Do you lose? you can try three commands: go bye help");
+        System.out.println("such as: go east");
     }
 
     private void goRoom(String direction) 
@@ -79,17 +70,8 @@ public class Game {
         }
         else {
             currentRoom = nextRoom;
-            System.out.println("you are" + currentRoom);
-            System.out.print("choose the direction: ");
-            if(currentRoom.northExit != null)
-                System.out.print("north ");
-            if(currentRoom.eastExit != null)
-                System.out.print("east ");
-            if(currentRoom.southExit != null)
-                System.out.print("south ");
-            if(currentRoom.westExit != null)
-                System.out.print("west ");
-            System.out.println();
+            System.out.println("you are " + currentRoom);
+            currentRoom.printOptions();
         }
     }
 	
@@ -115,3 +97,4 @@ public class Game {
 	}
 
 }
+
