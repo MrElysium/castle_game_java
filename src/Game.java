@@ -51,19 +51,7 @@ public class Game {
 
     private void goRoom(String direction) 
     {
-        Room nextRoom = null;
-        if(direction.equals("north")) {
-            nextRoom = currentRoom.northExit;
-        }
-        if(direction.equals("east")) {
-            nextRoom = currentRoom.eastExit;
-        }
-        if(direction.equals("south")) {
-            nextRoom = currentRoom.southExit;
-        }
-        if(direction.equals("west")) {
-            nextRoom = currentRoom.westExit;
-        }
+        Room nextRoom = currentRoom.nextRoom(direction);        
 
         if (nextRoom == null) {
             System.out.println("wrong direction");
@@ -97,4 +85,3 @@ public class Game {
 	}
 
 }
-
