@@ -1,4 +1,3 @@
-package castle;
 
 public class Room {
     public String description;
