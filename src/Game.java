@@ -1,12 +1,20 @@
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Game {
     private Room currentRoom;
+    private HashMap<String, Command> commands = new HashMap<String, Command>();
         
     public Game() 
     {
+    	commands.put("go",new CommandGo(this));
+    	commands.put("bye",new CommandBye(this));
+    	commands.put("help",new CommandHelp(this));
+    	
         createRooms();
+
+        
     }
 
     private void createRooms()
@@ -21,11 +29,15 @@ public class Game {
         bedroom = new Room("in the bedroom.");
         
         //	loading the exit of the room
-        outside.setExits(null, lobby, study, pub);
-        lobby.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        study.setExits(outside, bedroom, null, null);
-        bedroom.setExits(null, null, null, study);
+        
+        outside.setExit("east",lobby);
+        outside.setExit("west",study);
+        outside.setExit("south", pub);
+        lobby.setExit("south", outside);
+        pub.setExit("east",outside);
+        study.setExit("north",outside);
+        study.setExit("east", bedroom);
+        bedroom.setExit("south", study);
 
         currentRoom = outside;  //	the game begin outside the castle
     }
@@ -43,13 +55,9 @@ public class Game {
 
     // User command
 
-    private void printHelp() 
-    {
-        System.out.println("Do you lose? you can try three commands: go bye help");
-        System.out.println("such as: go east");
-    }
 
-    private void goRoom(String direction) 
+
+    protected void goRoom(String direction) 
     {
         Room nextRoom = currentRoom.nextRoom(direction);        
 
@@ -62,26 +70,35 @@ public class Game {
             currentRoom.printOptions();
         }
     }
+    public void play() {
+    	Scanner in = new Scanner(System.in);
+    	while ( true ) {
+    		String line = in.nextLine();
+    		String[] words = line.split(" ");
+    		String value = "";
+    		if (words.length >1) {
+    			value = words[1];
+    		}
+    		Command command = commands.get(words[0]);
+    		if (command != null) {
+    			command.doSomething(value);
+    			if ( command.isBye() ) {
+    				break;
+    			}
+    		}
+
+    	}
+    	
+    }
 	
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+		
 		Game game = new Game();
 		game.printWelcome();
-
-        while ( true ) {
-        		String line = in.nextLine();
-        		String[] words = line.split(" ");
-        		if ( words[0].equals("help") ) {
-        			game.printHelp();
-        		} else if (words[0].equals("go") ) {
-        			game.goRoom(words[1]);
-        		} else if ( words[0].equals("bye") ) {
-        			break;
-        		}
-        }
+		game.play();
+        
         
         System.out.println("see you again!");
-        in.close();
 	}
 
 }
