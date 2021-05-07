@@ -5,12 +5,23 @@ import java.util.Scanner;
 public class Game {
     private Room currentRoom;
     private HashMap<String, Command> commands = new HashMap<String, Command>();
-        
+    private class CommandGo extends Command {
+        @Override
+        public void doSomething(String word) {
+            goRoom(word);
+        };
+    }
+    private class CommandBye extends Command{
+        @Override
+        public boolean isContinue(){
+            return false;
+        }
+    }
     public Game() 
     {
-    	commands.put("go",new CommandGo(this));
-    	commands.put("bye",new CommandBye(this));
-    	commands.put("help",new CommandHelp(this));
+    	commands.put("go",new CommandGo());
+    	commands.put("bye",new CommandBye());
+    	commands.put("help",new CommandHelp());
     	
         createRooms();
 
@@ -72,7 +83,8 @@ public class Game {
     }
     public void play() {
     	Scanner in = new Scanner(System.in);
-    	while ( true ) {
+    	boolean ifContinue = true;
+    	while (ifContinue) {
     		String line = in.nextLine();
     		String[] words = line.split(" ");
     		String value = "";
@@ -82,9 +94,7 @@ public class Game {
     		Command command = commands.get(words[0]);
     		if (command != null) {
     			command.doSomething(value);
-    			if ( command.isBye() ) {
-    				break;
-    			}
+                ifContinue = command.isContinue();
     		}
 
     	}
